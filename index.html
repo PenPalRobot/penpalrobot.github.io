@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PenPalRobot - Where Every Robot Begins with a Pencil</title>
+    <!-- Google Fonts for a friendly, rounded sans-serif style -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1d52ce;
+            --text-dark: #22252a;
+            --text-muted: #5a606b;
+            --bg-light: #f9fbfd;
+            --card-border: #e2e8f0;
+            --accent-yellow: #f6ad55;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        /* Container to keep content centered */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-left: 24px;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 60px auto;
+        }
+
+        .hero h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 54px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-blue);
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Journey Timeline (Visual Steps) */
+        .journey-timeline {
+            display: grid;
+            grid-template-columns: repeat(6, 110px);
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* Simplified placeholder wireframe cards to match the drawing vibe */
+        .step-graphic {
+            width: 110px;
+            height: 150px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #94a3b8;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+        }
+
+        .step-graphic.blueprint {
+            background-color: #2b6cb0;
+            border: 2px solid #2b6cb0;
+            color: #ffffff;
+        }
+
+        /* Step Details text layout */
+        .journey-details {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .step-text {
+            text-align: center;
+        }
+
+        .step-number-title {
+            font-weight: 800;
+            font-size: 15px;
+            margin-bottom: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .step-number-title span {
+            background-color: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-text p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Subtitle Text Row */
+        .tagline-row {
+            text-align: center;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 24px;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(29, 82, 206, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .cta-btn:hover {
+            background-color: #153fa3;
+            transform: translateY(-2px);
+        }
+
+        /* Section Headings */
+        .section-title {
+            text-align: center;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+
+        /* How it Works Section */
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .process-node h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            margin-top: 15px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .process-node p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .process-icon-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--bg-light);
+            border: 1px solid var(--card-border);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .arrow {
+            font-size: 24px;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        /* Why PenPalRobot Section */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .why-card {
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 24px;
+            background-color: #ffffff;
+            transition: box-shadow 0.2s;
+        }
+
+        .why-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+        }
+
+        .card-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .why-card h4 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .why-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .journey-timeline, .journey-details, .how-it-works-grid, .why-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                justify-content: center;
+                align-items: center;
+            }
+            .step-graphic { margin: 0 auto; }
+            .arrow { transform: rotate(90deg); display: block; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header Navigation Links -->
+        <header>
+            <div class="logo">🤖 PenPalRobot</div>
+            <nav>
+                <a href="#" class="active">About</a>
+                <a href="#">The Journey</a>
+                <a href="#">Student Projects</a>
+                <a href="#">Join Us</a>
+            </nav>
+        </header>
+
+        <!-- Main Hero Intro Header -->
+        <section class="hero">
+            <h1>Where Every Robot Begins with a <span>Pencil</span></h1>
+            <p>PenPalRobot is a community of middle and high school students who sketch ideas, collaborate with a PenPal, build robots, and share their engineering journey with the world.</p>
+        </section>
+
+        <!-- 6-Step Visual Graphic Strip -->
+        <div class="journey-timeline">
+            <div class="step-graphic">📝<br>Notebook Sketch</div>
+            <div class="step-graphic">💬<br>PenPal Swap</div>
+            <div class="step-graphic">💡<br>Feedback & Edits</div>
+            <div class="step-graphic blueprint">📐<br>Blueprint Plan</div>
+            <div class="step-graphic">❓<br>Build Process</div>
+            <div class="step-graphic">🌐<br>Share Project</div>
+        </div>
+
+        <!-- 6-Step Accompanying Descriptions -->
+        <div class="journey-details">
+            <div class="step-text">
+                <div class="step-number-title"><span>1</span> Sketch Your Idea</div>
+                <p>It all starts with a simple sketch.</p>
+            </div>
+            <div class="step-text">
